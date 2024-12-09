@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Editable Builder</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Yahan apne CSS file ko link kiya hai -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Resume Editable Builder</h1>
+            <p>Create your resume easily</p>
+        </header>
+
+        <form id="resume-form">
+            <!-- Personal Information Section -->
+            <section class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+                
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" placeholder="Enter your phone number" required>
+            </section>
+
+            <!-- Summary Section -->
+            <section class="form-group">
+                <label for="summary">Summary:</label>
+                <textarea id="summary" placeholder="Write a brief summary about yourself" rows="4" required></textarea>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="form-group">
+                <label for="skills">Skills:</label>
+                <textarea id="skills" placeholder="List your skills, separated by commas" rows="3" required></textarea>
+            </section>
+
+            <!-- Work Experience Section -->
+            <section class="form-group">
+                <label for="company">Company:</label>
+                <input type="text" id="company" placeholder="Enter your company name" required>
+
+                <label for="role">Role:</label>
+                <input type="text" id="role" placeholder="Your role in the company" required>
+
+                <label for="years">Years of Experience:</label>
+                <input type="text" id="years" placeholder="How many years?" required>
+            </section>
+
+            <!-- Education Section -->
+            <section class="form-group">
+                <label for="degree">Degree:</label>
+                <input type="text" id="degree" placeholder="Your degree" required>
+
+                <label for="school">School/University:</label>
+                <input type="text" id="school" placeholder="Enter your school/university" required>
+
+                <label for="grad-year">Graduation Year:</label>
+                <input type="number" id="grad-year" placeholder="Enter graduation year" required>
+            </section>
+
+            <!-- Buttons -->
+            <button type="submit">Generate Resume</button>
+            <button type="button" id="download-resume">Download Resume</button>
+        </form>
+
+        <!-- Resume Preview Section -->
+        <div class="resume-preview hidden" id="resume-preview">
+            <div class="preview-header">
+                <h2 id="preview-name"></h2>
+                <div class="preview-contact">
+                    <p id="preview-email"></p>
+                </div>
+            </div>
+
+            <div class="preview-summary">
+                <h3>Summary</h3>
+                <p id="preview-summary-text"></p>
+            </div>
+
+            <div class="preview-skills">
+                <h3>Skills</h3>
+                <ul id="preview-skills-list"></ul>
+            </div>
+
+            <div class="preview-experience">
+                <h3>Work Experience</h3>
+                <p id="preview-experience-text"></p>
+            </div>
+
+            <div class="preview-education">
+                <h3>Education</h3>
+                <p id="preview-education-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('resume-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get values from the form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const summary = document.getElementById('summary').value;
+            const skills = document.getElementById('skills').value.split(',').map(skill => skill.trim());
+            const company = document.getElementById('company').value;
+            const role = document.getElementById('role').value;
+            const years = document.getElementById('years').value;
+            const degree = document.getElementById('degree').value;
+            const school = document.getElementById('school').value;
+            const gradYear = document.getElementById('grad-year').value;
+
+            // Update the preview
+            document.getElementById('preview-name').innerText = name;
+            document.getElementById('preview-email').innerText = email;
+            document.getElementById('preview-summary-text').innerText = summary;
+
+            const skillsList = document.getElementById('preview-skills-list');
+            skillsList.innerHTML = '';
+            skills.forEach(skill => {
+                const li = document.createElement('li');
+                li.innerText = skill;
+                skillsList.appendChild(li);
+            });
+
+            // Adding work experience
+            document.getElementById('preview-experience-text').innerText = `Company: ${company}, Role: ${role}, Years: ${years}`;
+
+            // Adding education details
+            document.getElementById('preview-education-text').innerText = `Degree: ${degree}, School: ${school}, Graduation Year: ${gradYear}`;
+
+            // Show the resume preview
+            document.getElementById('resume-preview').classList.remove('hidden');
+        });
+
+        document.getElementById('download-resume').addEventListener('click', function() {
+            const resumeData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                summary: document.getElementById('summary').value,
+                skills: document.getElementById('skills').value.split(',').map(skill => skill.trim()),
+                workExperience: {
+                    company: document.getElementById('company').value,
+                    role: document.getElementById('role').value,
+                    years: document.getElementById('years').value,
+                },
+                education: {
+                    degree: document.getElementById('degree').value,
+                    school: document.getElementById('school').value,
+                    graduationYear: document.getElementById('grad-year').value,
+                }
+            };
+
+            const blob = new Blob([JSON.stringify(resumeData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resume.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>

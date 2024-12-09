@@ -1,0 +1,178 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    background: linear-gradient(135deg, #6a82fb, #fc5c7d); /* Updated gradient background for a vibrant look */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container styles */
+.container {
+    background: rgb(0, 0, 0);
+    padding: 40px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s; /* Transition for hover effect */
+}
+
+.container:hover {
+    transform: translateY(-5px); /* Lift effect on container hover */
+}
+
+/* Header styles */
+header h1 {
+    font-size: 36px; /* Larger header for emphasis */
+    color: #fff; /* White text for contrast */
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Uppercase for style */
+    letter-spacing: 2px; /* Increased letter spacing */
+}
+
+header p {
+    font-size: 18px; /* Slightly larger subheader */
+    color: #f0f0f0; /* Light gray for contrast */
+    margin-bottom: 20px;
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #6a82fb; /* Blue color for labels */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: border-color 0.3s, background 0.3s; /* Transition for border color and background */
+}
+
+input:focus, textarea:focus {
+    border-color: #6a82fb; /* Change border color on focus */
+    background: #ffffff; /* Change background on focus */
+}
+
+/* Button styles */
+button {
+    background: #6a82fb; /* Stylish blue for the button */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s, box-shadow 0.3s; /* Add shadow on hover */
+    margin: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Button shadow */
+}
+
+button:hover {
+    background: #fc5c7d; /* Pinkish hover color */
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Resume preview styles */
+.resume-preview {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #ffffff; /* White background for the preview */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    border: 2px solid #6a82fb; /* Border color for emphasis */
+}
+
+.preview-header {
+    border-bottom: 2px solid #6a82fb; /* Bottom border for header */
+    padding-bottom: 10px;
+}
+
+.preview-header h2 {
+    color: #333; /* Dark color for the name */
+    font-size: 28px; /* Increased font size for the name */
+}
+
+.preview-contact {
+    font-size: 14px;
+    color: #6c757d; /* Grey color for contact information */
+}
+
+.preview-summary {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f1f1f1; /* Light grey background */
+    border-radius: 5px;
+}
+
+.preview-summary h3 {
+    margin: 0 0 10px 0;
+    color: #6a82fb; /* Blue color for section title */
+}
+
+/* Skills section */
+.preview-skills {
+    margin-top: 15px;
+}
+
+.preview-skills h3 {
+    color: #6a82fb; /* Blue color for section title */
+}
+
+.preview-skills-list {
+    list-style-type: disc; /* Bulleted list */
+    padding-left: 20px;
+}
+
+/* Education, experience, and projects sections */
+.preview-education, .preview-experience, .preview-projects {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Slightly different background */
+    border-left: 5px solid #6a82fb; /* Accent color on left */
+}
+
+.preview-education h3,
+.preview-experience h3,
+.preview-projects h3 {
+    color: #6a82fb; /* Blue color for section title */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Reduced padding on smaller screens */
+    }
+
+    header h1 {
+        font-size: 28px; /* Smaller header on mobile */
+    }
+
+    button {
+        width: 100%; /* Full-width buttons on mobile */
+        padding: 15px; /* Larger padding */
+    }
+}
+
+/* Hidden class for elements that should be hidden initially */
+.hidden {
+    display: none;
+}
